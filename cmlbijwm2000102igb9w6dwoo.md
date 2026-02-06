@@ -5,6 +5,7 @@ seoDescription: "Discover when to use C4 and ArchiMate modeling approaches to ef
 datePublished: Fri Feb 06 2026 23:25:28 GMT+0000 (Coordinated Universal Time)
 cuid: cmlbijwm2000102igb9w6dwoo
 slug: c4-vs-archimate-choosing-the-right-modeling-approach-for-your-project
+ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1770421319470/111ad944-4c3b-4f6a-aea2-f7bbd92af1df.png
 tags: software-design, architecture-design, c4-model, archimate
 
 ---
