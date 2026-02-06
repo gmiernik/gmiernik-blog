@@ -5,6 +5,7 @@ seoDescription: "Discover how TDD improves object-oriented design by identifying
 datePublished: Thu Jan 29 2026 22:49:20 GMT+0000 (Coordinated Universal Time)
 cuid: cml01qlx3000302l26bj9cbcl
 slug: why-tdd-forces-you-to-write-better-object-oriented-code
+ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1770421910458/0fb3390e-3332-4b62-b1eb-0545786d83e4.png
 tags: tdd, object-oriented-programming
 
 ---
