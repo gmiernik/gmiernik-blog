@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  lang: 'pl' | 'en' | 'nl';
+  availableLangs?: ('pl' | 'en' | 'nl')[];
+}
+
+const { lang, availableLangs } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.replace(/^\/(pl|en|nl)/, '') || '/';
+const isArticlePage = cleanPath.startsWith('/blog/') && cleanPath.length > 6;
+
+function getLangTarget(targetLang: 'pl' | 'en' | 'nl') {
+  if (isArticlePage && availableLangs && !availableLangs.includes(targetLang)) {
+    return `/${targetLang}/blog`;
+  }
+  return `/${targetLang}${cleanPath}`;
+}
+---
+
+<header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/60 transition-all">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <!-- Brand Logo PNG Banner -->
+    <a href={`/${lang}`} class="flex items-center space-x-3 opacity-90 hover:opacity-100 transition-opacity">
+      <img 
+        src="/banner_gmiernik1.png" 
+        alt="Grzegorz Miernik Logo" 
+        class="h-10 w-auto object-contain"
+      />
+    </a>
+
+    <!-- Navigation Links -->
+    <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+      <a href={`/${lang}`} class="hover:text-teal-400 transition-colors">Strona Główna</a>
+      <a href={`/${lang}/blog`} class="hover:text-teal-400 transition-colors">Artykuły</a>
+      <a href={`/${lang}/tags`} class="hover:text-teal-400 transition-colors">Tagi</a>
+    </nav>
+
+    <!-- Language Selector -->
+    <div class="flex items-center space-x-4">
+      <div class="flex items-center bg-slate-900 border border-slate-800 rounded-lg p-1 text-xs">
+        {(['pl', 'en', 'nl'] as const).map((l) => {
+          const targetUrl = getLangTarget(l);
+          const isActive = lang === l;
+          const isTranslated = !isArticlePage || !availableLangs || availableLangs.includes(l);
+
+          return (
+            <a
+              href={targetUrl}
+              title={!isTranslated ? `Artykuł niedostępny w języku ${l.toUpperCase()} - przejdź do listy` : undefined}
+              class={`px-2 py-1 rounded transition-colors uppercase ${
+                isActive
+                  ? 'bg-teal-500/20 text-teal-300 font-semibold'
+                  : isTranslated
+                  ? 'text-slate-400 hover:text-slate-200'
+                  : 'text-slate-600 hover:text-slate-400 border border-slate-800/80'
+              }`}
+            >
+              {l}
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</header>

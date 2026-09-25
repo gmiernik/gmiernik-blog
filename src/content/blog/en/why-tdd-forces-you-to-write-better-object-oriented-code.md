@@ -1,14 +1,8 @@
 ---
 title: "Why TDD Forces You to Write Better Object-Oriented Code"
-seoTitle: "Improve Object-Oriented Code with TDD Techniques"
-seoDescription: "Discover how TDD improves object-oriented design by identifying and solving design problems, leading to more testable, maintainable code"
-datePublished: Thu Jan 29 2026 22:49:20 GMT+0000 (Coordinated Universal Time)
-cuid: cml01qlx3000302l26bj9cbcl
-slug: why-tdd-forces-you-to-write-better-object-oriented-code
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1770422944543/01809439-4d80-4f98-ab74-27e58d71cacb.png
-ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1770421910458/0fb3390e-3332-4b62-b1eb-0545786d83e4.png
-tags: tdd, object-oriented-programming
-
+description: "Discover how TDD improves object-oriented design by identifying and solving design problems, leading to more testable, maintainable code"
+datePublished: 2026-01-29 22:49:20
+tags: ["tdd", "object-oriented-programming", "architecture"]
 ---
 
 If you have 2-3 years of programming experience, you've probably heard that you should write tests. But have you ever thought about TDD (Test-Driven Development) as a design tool rather than just a testing tool?

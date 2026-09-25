@@ -1,14 +1,8 @@
 ---
 title: "C4 vs ArchiMate: Choosing the Right Modeling Approach for Your Project"
-seoTitle: "C4 or ArchiMate: Best for Your Project?"
-seoDescription: "Discover when to use C4 and ArchiMate modeling approaches to effectively visualize architecture for your project phases"
-datePublished: Fri Feb 06 2026 23:25:28 GMT+0000 (Coordinated Universal Time)
-cuid: cmlbijwm2000102igb9w6dwoo
-slug: c4-vs-archimate-choosing-the-right-modeling-approach-for-your-project
-cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1770422755152/bc7834c0-32c5-4a07-8877-3e1f3ae79aa8.png
-ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1770421319470/111ad944-4c3b-4f6a-aea2-f7bbd92af1df.png
-tags: software-design, architecture-design, c4-model, archimate
-
+description: "Discover when to use C4 and ArchiMate modeling approaches to effectively visualize architecture for your project phases."
+datePublished: 2026-02-06
+tags: ["software-design", "architecture-design", "c4-model", "archimate"]
 ---
 
 You're starting a new project and need to visualize the architecture. Should you use C4 model or ArchiMate? The answer isn't "one is better than the other" - it's about choosing the right tool for the right phase of your project.

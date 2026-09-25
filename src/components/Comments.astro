@@ -1,0 +1,42 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'pl' } = Astro.props;
+
+const titleMap: Record<string, string> = {
+  pl: 'Dyskusja & Komentarze',
+  en: 'Discussion & Comments',
+  nl: 'Discussie & Reacties',
+};
+
+const commentTitle = titleMap[lang] || titleMap.pl;
+---
+
+<section class="mt-12 pt-8 border-t border-slate-800/80">
+  <h3 class="text-xl font-bold text-slate-100 mb-6 flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+    {commentTitle}
+  </h3>
+
+  <div class="giscus-wrapper bg-slate-900/40 p-4 rounded-xl border border-slate-800/60">
+    <script src="https://giscus.app/client.js"
+        data-repo="gmiernik/gmiernik-blog"
+        data-repo-id="R_kgDOREebUQ"
+        data-category="General"
+        data-category-id="DIC_kwDOREebUc4DGZpY"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="transparent_dark"
+        data-lang={lang}
+        crossorigin="anonymous"
+        async>
+    </script>
+  </div>
+</section>

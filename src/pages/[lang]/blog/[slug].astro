@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Comments from '../../../components/Comments.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  
+  return posts.map((post) => {
+    const [lang, ...slugParts] = post.slug.split('/');
+    const slug = slugParts.join('/');
+    
+    // Find all languages where an article with the same slug exists
+    const availableLangs = posts
+      .filter((p) => p.slug.endsWith(`/${slug}`) || p.slug === slug)
+      .map((p) => p.slug.split('/')[0] as 'pl' | 'en' | 'nl');
+
+    return {
+      params: { lang, slug },
+      props: { post, availableLangs },
+    };
+  });
+}
+
+const { post, availableLangs } = Astro.props;
+const { lang } = Astro.params as { lang: 'pl' | 'en' | 'nl' };
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} lang={lang} availableLangs={availableLangs}>
+  <article class="py-8 max-w-3xl mx-auto">
+    <!-- Article Header -->
+    <header class="mb-10 pb-8 border-b border-slate-800">
+      <div class="flex items-center gap-3 text-xs text-teal-400 font-mono mb-4">
+        <time datetime={post.data.datePublished.toISOString()}>
+          {post.data.datePublished.toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight leading-tight mb-4">
+        {post.data.title}
+      </h1>
+
+      {post.data.description && (
+        <p class="text-lg text-slate-400 font-light leading-relaxed">
+          {post.data.description}
+        </p>
+      )}
+
+      <div class="flex flex-wrap gap-2 mt-6">
+        {post.data.tags.map((tag) => (
+          <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-teal-500/10 text-teal-300 border border-teal-500/20">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    </header>
+
+    <!-- Markdown Content -->
+    <div class="prose prose-invert prose-slate max-w-none 
+                prose-headings:text-slate-100 prose-headings:font-bold prose-headings:tracking-tight
+                prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-slate-800 prose-h2:pb-2
+                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+                prose-p:text-slate-300 prose-p:leading-relaxed prose-p:my-4
+                prose-a:text-teal-400 prose-a:no-underline hover:prose-a:underline
+                prose-code:text-teal-300 prose-code:bg-slate-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+                prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-800 prose-pre:rounded-xl prose-pre:p-4
+                prose-ul:text-slate-300 prose-ol:text-slate-300">
+      <Content />
+    </div>
+
+    <!-- Comments Section -->
+    <Comments lang={lang} />
+  </article>
+</BaseLayout>

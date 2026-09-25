@@ -1,0 +1,20 @@
+---
+import { useTranslations } from '../utils/i18n';
+
+interface Props {
+  lang: 'pl' | 'en' | 'nl';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<footer class="border-t border-slate-800/60 bg-slate-950 py-8 mt-12 text-sm text-slate-400">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <p>© {new Date().getFullYear()} Grzegorz Miernik. {t('footer.rights')}</p>
+    <div class="flex items-center space-x-6">
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition-colors">GitHub</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition-colors">LinkedIn</a>
+    </div>
+  </div>
+</footer>
